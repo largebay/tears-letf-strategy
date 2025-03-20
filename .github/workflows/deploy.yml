@@ -1,0 +1,36 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 14 * * *' # Runs daily at 9AM Central US time (adjusted to UTC)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Generate HTML
+        run: yarn start # This will also trigger `prestart` if defined
+
+      - name: Commit and Push to `docs` branch
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+          git checkout -B docs
+          git add docs/index.html
+          git commit -m "Auto-update HTML"
+          git push -f origin docs
