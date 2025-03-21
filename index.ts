@@ -22,6 +22,18 @@ async function main() {
 
 const action = await main();
 
+const dateOptions: Intl.DateTimeFormatOptions = {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
+  second: 'numeric',
+  timeZone: 'America/New_York',
+  timeZoneName: 'short',
+};
+
 const html = `<!DOCTYPE html>
 <html lang="en">
   <head>
@@ -31,7 +43,7 @@ const html = `<!DOCTYPE html>
   </head>
   <body>
     <h1>${action}</h1>
-    <p>Last updated: ${new Date().toLocaleString()}</p>
+    <p>Last updated: ${new Date().toLocaleString('en-US', dateOptions)}</p>
   </body>
 </html>
 `;
