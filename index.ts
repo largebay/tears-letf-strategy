@@ -1,10 +1,7 @@
-import dotenv from 'dotenv';
 import fs from 'node:fs';
 import path from 'node:path';
 import { FREDObservationData } from './src/types';
 import { checkTriggers } from './src/tears_letf_strategy';
-
-dotenv.config();
 
 const FRED_API_KEY = process.env.FRED_API_KEY as string;
 

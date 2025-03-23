@@ -7,7 +7,6 @@
   "author": "largebay <203953998+largebay@users.noreply.github.com>",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^16.4.7",
     "tsx": "^4.19.3"
   },
   "devDependencies": {
@@ -21,9 +20,9 @@
     "tsc": "tsc",
     "clean": "rimraf docs",
     "prestart": "yarn clean && yarn tsc",
-    "start": "tsx index.ts",
+    "start": "tsx --env-file=.env index.ts",
     "predev": "yarn clean && yarn tsc",
-    "dev": "tsx watch index.ts src",
+    "dev": "tsx --env-file=.env watch index.ts src",
     "test": "jest"
   }
 }
